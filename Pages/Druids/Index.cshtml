@@ -1,0 +1,69 @@
+@page
+@model DruidShapeshifting.Pages_Druid.IndexModel
+
+@{
+    ViewData["Title"] = "Druids";
+}
+
+<header class="masthead" style="background-image: url('img/Druid.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Druid</h1>
+            <span class="subheading"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Druid[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Druid[0].Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Druid[0].Race)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Druid[0].Creatures)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Druid) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Race)
+            </td>
+            <td>
+                @{
+                    int numOfCreatures = item.Creatures.Count;
+                    @Html.DisplayFor(modelItem => numOfCreatures)
+                }
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.DruidId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.DruidId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.DruidId">Delete</a> |
+                <a asp-page="./Creature" asp-route-id="@item.DruidId">Creature</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

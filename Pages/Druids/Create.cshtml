@@ -1,0 +1,76 @@
+@page
+@model DruidShapeshifting.Pages_Druid.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Druid</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Druid.Name" class="control-label"></label>
+                <input asp-for="Druid.Name" class="form-control" />
+                <span asp-validation-for="Druid.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Druid.Level" class="control-label"></label>
+                <input asp-for="Druid.Level" class="form-control" />
+                <span asp-validation-for="Druid.Level" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Druid.Race" class="control-label"></label>
+                <input asp-for="Druid.Race" class="form-control" />
+                <span asp-validation-for="Druid.Race" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post">
+                        <!--  Dropdown list of creatures -->
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                            <select asp-for="creatureid" asp-items="Model.pickCreature" class="form-control">
+                                <option value="">-- Select Creature --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Add" class="btn btn-primary" />
+                            <input type="hidden" asp-for="druidid" value="@Model.druidid" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <ul>
+                    @foreach(var creature in Model.Druid.Creatures)
+                    {
+                        <form method="post">
+                            <input type="hidden" asp-for="druidid" value="@Model.druidid" />
+                            <li>@creature.Name <input type="submit" value="Delete" class="btn- btn-danger btn-sm my-1" asp-page-handler="DeleteCreature"></li>
+                            <input type="hidden" asp-for="CreatureToDelete" value="@creature.CreatureId" />
+                        </form>
+                    }
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
