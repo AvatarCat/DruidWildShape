@@ -73,7 +73,7 @@ namespace DruidShapeshifting.Pages_Druid
                 return NotFound();
             }
 
-             
+    
                 Druid.Creatures.Add(getCreature);
                 _context.SaveChanges();
             
@@ -94,19 +94,6 @@ namespace DruidShapeshifting.Pages_Druid
             }
 
             return RedirectToPage("/Druids/Creature", new { id = druidid });
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _context.Druid.Add(Druid);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
         }
     }
 }

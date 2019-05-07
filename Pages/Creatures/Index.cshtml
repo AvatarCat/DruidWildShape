@@ -72,7 +72,7 @@
                         challengeSort = @Model.downArrow;
                     }
                     
-                    <a style="color: black" asp-page="./Index" asp-route-CurrentSort="@sortByChallenge" asp-route-PageNum="@(Model.PageNum)">@Html.DisplayNameFor(model => model.Creature[0].Challenge)</a>   
+                    <a style="color: black" asp-page="./Index" asp-route-CurrentSort="@sortByChallenge" asp-route-PageNum="@(Model.PageNum)" asp-route-CreatureChallenge="@Model.CreatureChallenge" asp-route-SearchString="@Model.SearchString">@Html.DisplayNameFor(model => model.Creature[0].Challenge)</a>   
                     @challengeSort   
                 }
                 
@@ -130,13 +130,13 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item @preDisabled">
-      <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)" asp-route-CurrentSort="@Model.CurrentSort" aria-label="Previous">
+      <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)" asp-route-CurrentSort="@Model.CurrentSort" asp-route-CreatureChallenge="@Model.CreatureChallenge" asp-route-SearchString="@Model.SearchString" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
     <li style="font-size: 14px; padding: 9px 0">Page @Model.PageNum of @Model.numOfPages</li>
     <li class="page-item @nextDisabled">
-      <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)" asp-route-CurrentSort="@Model.CurrentSort" aria-label="Next">
+      <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)" asp-route-CurrentSort="@Model.CurrentSort" asp-route-CreatureChallenge="@Model.CreatureChallenge" asp-route-SearchString="@Model.SearchString" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
