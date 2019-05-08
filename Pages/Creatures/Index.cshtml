@@ -31,6 +31,14 @@
         <input type="submit" value="Filter" />
     </p>
 </form>
+
+<div>
+    <p>filterSearchNum = @Model.filterSearchNum</p>
+    <p>fsPageNum = @Model.fsPageNum</p>
+    <p>filterChallengeNum = @Model.filterChallengeNum</p>
+    <p>fcPageNum = @Model.fcPageNum</p>
+</div>
+
 <table class="table">
     <!-- each <th> displays the header of the column -->
     <thead>
@@ -50,7 +58,7 @@
                         nameSort = @Model.downArrow;
                     }
                     
-                    <a style="color: black" asp-page="./Index" asp-route-CurrentSort="@sortByName" asp-route-PageNum="@(Model.PageNum)">@Html.DisplayNameFor(model => model.Creature[0].Name)</a>  
+                    <a style="color: black" asp-page="./Index" asp-route-CurrentSort="@sortByName" asp-route-PageNum="@(Model.PageNum)" asp-route-SearchString="@(Model.SearchString)" asp-route-CreatureChallenge="@(Model.CreatureChallenge)">@Html.DisplayNameFor(model => model.Creature[0].Name)</a>  
                         
                     @nameSort
                 }
