@@ -35,6 +35,10 @@ namespace DruidShapeshifting.Pages_Creatures
         public int PageNum {get; set;} = 1;
         public int PageSize {get; set;} = 10;
         public int numOfPages {get; set;} = 0;
+        public int filterChallengeNum {get; set;}
+        public int filterSearchNum {get; set;}
+        public int fcPageNum {get; set;}
+        public int fsPageNum {get; set;}
 
 
         [BindProperty(SupportsGet = true)]
@@ -70,22 +74,28 @@ namespace DruidShapeshifting.Pages_Creatures
                     break;
             }
 
+            // Get the number of Creatures by counting the names
+            var numofCreatures = _context.Creature.Select(n => n.Name).Count();
+            filterChallengeNum = numofCreatures;
+            filterSearchNum = numofCreatures;
+
             if (!string.IsNullOrEmpty(SearchString))
             {
                 query = query.Where(s => s.Name.Contains(SearchString));
+                filterSearchNum = query.Count();
             }
 
             if (!string.IsNullOrEmpty(CreatureChallenge))
             {
                 query = query.Where(x => x.Challenge == CreatureChallenge);
+                filterChallengeNum = query.Count();
             }
-
-            // Get the number of Creatures by counting the names
-            var numofCreatures = _context.Creature.Select(n => n.Name).Count();
 
             // Get the number of pages by dividing the number of Creatures by the page size and round up
             // ex. 103 creatures/15 creatures per page = 6.867, rounds up to 7 pages
             numOfPages = (int)Math.Ceiling(Convert.ToDecimal(numofCreatures)/PageSize);
+            fcPageNum = (int)Math.Ceiling(Convert.ToDecimal(filterChallengeNum)/PageSize);
+            fsPageNum = (int)Math.Ceiling(Convert.ToDecimal(filterSearchNum)/PageSize);
 
             // Create a list of Challenge Ratings
             challengeRating = new SelectList(await CR.Distinct().ToListAsync());

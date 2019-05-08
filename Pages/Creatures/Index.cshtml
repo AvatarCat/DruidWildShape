@@ -31,7 +31,6 @@
         <input type="submit" value="Filter" />
     </p>
 </form>
-
 <table class="table">
     <!-- each <th> displays the header of the column -->
     <thead>
@@ -121,7 +120,7 @@
     {
         preDisabled = "disabled";
     }
-    if(Model.PageNum >= Model.numOfPages)
+    if(Model.PageNum >= Model.numOfPages || Model.PageNum >= Model.fcPageNum || Model.PageNum >= Model.fsPageNum )
     {
         nextDisabled = "disabled";
     }
