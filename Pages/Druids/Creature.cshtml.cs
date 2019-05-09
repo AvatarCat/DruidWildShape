@@ -86,8 +86,6 @@ namespace DruidShapeshifting.Pages_Druid
         // Delete the Creature from the Druid
         public IActionResult OnPostDeleteCreature(int? id)
         {
-            //Druid = _context.Druid.Include(d => d.Creatures).Where(d => d.DruidId == id).FirstOrDefault();
-
             Creature Creature = _context.Creature.FirstOrDefault(c => c.CreatureId == CreatureToDelete);
 
             if (Creature != null)

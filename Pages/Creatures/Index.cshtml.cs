@@ -81,12 +81,16 @@ namespace DruidShapeshifting.Pages_Creatures
             // Set FilterSearchNum to equal numofCreatures
             filterSearchNum = numofCreatures;
 
+            // if SearchString is not null or empty, find Names that contain SearchString
+            // and make filterSearchNum equal the amount of results
             if (!string.IsNullOrEmpty(SearchString))
             {
                 query = query.Where(s => s.Name.Contains(SearchString));
                 filterSearchNum = query.Count();
             }
 
+            // if CreatureChallenge is not null or empty, find Names that contain CreatureChallenge
+            // and make filterChallengeNum equal the amount of results
             if (!string.IsNullOrEmpty(CreatureChallenge))
             {
                 query = query.Where(x => x.Challenge == CreatureChallenge);

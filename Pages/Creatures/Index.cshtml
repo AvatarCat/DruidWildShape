@@ -121,12 +121,14 @@
     {
         preDisabled = "disabled";
     }
+    <!-- if PageNum is greater that numOfPages or fcPageNum or fsPageNum, then the next button is disabled -->
     if(Model.PageNum >= Model.numOfPages || Model.PageNum >= Model.fcPageNum || Model.PageNum >= Model.fsPageNum )
     {
         nextDisabled = "disabled";
     }
 }
 
+<!-- if fcPageNum or fsPageNum is less than numOfPages, then set numOfPages to the lowest one -->
 @{
     if(Model.fcPageNum <= Model.numOfPages)
     {
