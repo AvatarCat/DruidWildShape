@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DruidShapeshifting.Migrations
 {
     [DbContext(typeof(DruidShapeshiftingContext))]
-    [Migration("20190426181932_InitialCreate")]
+    [Migration("20190508224118_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -36,6 +36,7 @@ namespace DruidShapeshifting.Pages_Druid
 
         public string message {get; set;}
 
+        // Create a Select List of the Creatures
         public IActionResult OnGet(int? id)
         {
             // Get a list of all the cretures names
@@ -53,6 +54,7 @@ namespace DruidShapeshifting.Pages_Druid
             return Page();
         }
 
+        // Add the Creatures to the Druid
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             // Get the Druid
@@ -81,6 +83,7 @@ namespace DruidShapeshifting.Pages_Druid
             return RedirectToPage("/Druids/Creature", new { id = druidid });
         }
 
+        // Delete the Creature from the Druid
         public IActionResult OnPostDeleteCreature(int? id)
         {
             //Druid = _context.Druid.Include(d => d.Creatures).Where(d => d.DruidId == id).FirstOrDefault();

@@ -76,7 +76,9 @@ namespace DruidShapeshifting.Pages_Creatures
 
             // Get the number of Creatures by counting the names
             var numofCreatures = _context.Creature.Select(n => n.Name).Count();
+            // Set FilterChallegeNum to equal numofCreatures
             filterChallengeNum = numofCreatures;
+            // Set FilterSearchNum to equal numofCreatures
             filterSearchNum = numofCreatures;
 
             if (!string.IsNullOrEmpty(SearchString))
@@ -94,7 +96,13 @@ namespace DruidShapeshifting.Pages_Creatures
             // Get the number of pages by dividing the number of Creatures by the page size and round up
             // ex. 103 creatures/15 creatures per page = 6.867, rounds up to 7 pages
             numOfPages = (int)Math.Ceiling(Convert.ToDecimal(numofCreatures)/PageSize);
+
+            fcPageNum = numOfPages;
+            fsPageNum = numOfPages;
+
+            // Get the number of pages by dividing the number of Creatures, when filtered by the Challenge Rating, by the page size and round up
             fcPageNum = (int)Math.Ceiling(Convert.ToDecimal(filterChallengeNum)/PageSize);
+            // Get the number of pages by dividing the number of Creatures, when filtered by Search Bar, by the page size and round up
             fsPageNum = (int)Math.Ceiling(Convert.ToDecimal(filterSearchNum)/PageSize);
 
             // Create a list of Challenge Ratings
